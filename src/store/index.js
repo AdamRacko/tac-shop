@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as menProducts from '../../../data/men'
-import * as womenProducts from '../../../data/women'
-import * as kidsProducts from '../../../data/kids'
+import * as menProducts from '../data/men'
+import * as womenProducts from '../data/women'
+import * as kidsProducts from '../data/kids'
 
 Vue.use(Vuex)
 

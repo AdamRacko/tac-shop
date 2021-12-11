@@ -1,27 +1,53 @@
 <template>
   <div class="cart">
-    <div class="checkout-box">
-      <ul class="checkout-list">
-        <transition-group name="fade">
-          <li v-for="(product, index) in getProductsInCart" :key="product" class="checkout-product">
-            <h3 class="product-name">{{ product.title }}</h3>
-            <span class="product-price"> {{ product.price }} </span>
-            <b-form-input v-model="quantity" placeholder="Qty">1</b-form-input>
-            <button class="product-remove" @click="remove(index)">X</button>
-          </li>
-        </transition-group>
-      </ul>
-      <div v-if="!hasProduct()" class="checkout-message">
-        <h3>No products...</h3>
-        <router-link to="/">Back to list of products</router-link>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h5 class="header-col-8">
+            Payment Information
+          </h5>
+      <form>
+            <div class="mb-3 mb-3-full-name">
+              <input type="text" class="form-control form-control-first-name" id="exampleInputFirstName" placeholder="First Name">
+              <input type="text" class="form-control" id="exampleInputLastName" placeholder="Last Name">
+            </div>
+            <div class="mb-3 mb-3-others-information">
+              <input type="text" class="form-control form-control-first-name" id="exampleInputAddress" placeholder="Address">
+              <input type="text" class="form-control form-control-first-name" id="exampleInputPincode" placeholder="Pincode">
+              <input type="text" class="form-control " id="exampleInputCountry" placeholder="Country">
+            </div>
+            <button type="submit" class="btn">Order</button>
+          </form>
+        </div>
+        <div class="col-4">
+          <h5 class="header-col-4">
+            Order summary
+          </h5>
+          <div class="products">
+            <div class="order-information">
+            <div class="name-product">Nike Shoes</div>
+            <div class="prize-product">125€</div>
+            <input type="number" id="exampleInputValue">
+            <button class="products-button">X</button>
+          </div>
+                      <div class="order-information">
+            <div class="name-product">Nike Shoes</div>
+            <div class="prize-product">125€</div>
+            <input type="number" id="exampleInputValue">
+            <button class="products-button">X</button>
+          </div>
+          <hr>
+          <div class="total-amount-order">
+          <p>Total amount</p>
+          <p>150€</p>
+          </div>
+          </div>
+          
+        </div>
       </div>
-      <h3 class="total" v-if="hasProduct()">
-        Total: {{ getTotalPrice() }} €
-      </h3>
-      <b-button class="btn" v-if="hasProduct()">
-        Order
-      </b-button>
+         
     </div>
+
   </div>
 </template>
 
@@ -59,73 +85,87 @@ export default {
 </script>
 
 <style scoped>
-.cart {
-  height: 100vh;
-  width: 100%;
-  padding-top: 100px;
+.container-fluid{
+  width: 90%;
 }
-.btn {
-  background-color: black;
-  font-size: 2em;
-  font-weight: bold;
-  align-self: flex-end;
+.container-fluid .row{
+  justify-content: space-evenly;
 }
-.checkout-box {
-  width: 100%;
-  max-width: 900px;
+.col-6, .col-4{
+  margin-top: 100px;
+}
+.header-col-8, .header-col-4{
   display: flex;
-  flex-direction: column;
-  margin: 50px auto;
-  box-sizing: border-box;
-  padding: 1em;
-}
-
-.checkout-list {
-  padding: 0;
-}
-
-.checkout-product {
-  display: grid;
-  grid-template-columns: 3fr 2fr .4fr .5fr;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(73, 74, 78, 0.1);
-  border-radius: 5px;
-  list-style: none;
-  box-sizing: border-box;
-  padding: .8em;
-  margin: 1em 0;
-}
-
-.checkout-product * {
-  place-self: center;
-}
-
-.product-name {
-  box-sizing: border-box;
-}
-
-.product-price {
-  font-size: 1.2em;
+  font-size: 16px;
   font-weight: bold;
+  margin-left: 6px;
 }
-
-.product-remove {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+.mb-3-full-name{
+  display: flex;
+}
+form, .products{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.form-control{
+  background-color: rgb(241, 241, 241);
   border: 0;
-  background-color: red;
-  color: #fff;
-  cursor: pointer;
+  padding: 0.675rem .75rem;
 }
-
-.total {
-  font-size: 2em;
+.form-control-first-name{
+  margin-right: 20px;
+}
+.mb-3-others-information{
+  display: flex;
+}
+.mb-3 {
+    margin-bottom: 2rem!important;
+}
+form button{
+  display: flex;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+}
+form button:hover{
+  color: white;
+}
+.order-information{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+}
+.name-product{
+  font-size: 14px;
   font-weight: bold;
-  align-self: flex-end;
+  padding: 5px;
+}
+.prize-product{
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+}
+#exampleInputValue{
+  width: 70px !important;
+  padding: 0 5px 0 5px !important;
+  margin: 0 5px 0 5px;
+}
+.products-button{
+  background:0;
+  border: 0;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.total-amount-order{
+  display: flex;
+  justify-content: space-between;
+}
+.total-amount-order p {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
 }
 
-.checkout-message {
-  font-size: 1.5em;
-}
 </style>
